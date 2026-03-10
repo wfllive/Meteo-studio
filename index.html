@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <title>⚡ Meteo Studio Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
+    
+    <meta name="referrer" content="no-referrer" />
+    
+    <!-- index.html - добавить в <head> -->
+<script src="https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.umd.min.js"></script>
+<link href="https://cdn.maptiler.com/maptiler-sdk-js/v3.10.2/maptiler-sdk.css" rel="stylesheet" />
+<script src="https://cdn.maptiler.com/maptiler-weather/v3.1.1/maptiler-weather.umd.min.js"></script>
+
+<style>
+  /* Стили для карты ветра */
+  #wind-map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* Убираем элементы управления MapTiler */
+  .maplibregl-ctrl-bottom-left,
+  .maplibregl-ctrl-bottom-right {
+    display: none !important;
+  }
+  
+  /* index.css - добавьте */
+
+/* Анимация пульса для маркера местоположения на карте ветра */
+@keyframes wind-marker-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+.wind-my-location-pulse {
+  animation: wind-marker-pulse 2s ease-out infinite;
+}
+
+/* Скрыть контролы MapTiler */
+.maplibregl-ctrl-bottom-left,
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-top-left,
+.maplibregl-ctrl-top-right,
+.maplibregl-ctrl-attrib,
+.maplibregl-ctrl-logo,
+.maptiler-ctrl {
+  display: none !important;
+}
+</style>
+  <script type="module" crossorigin src="./assets/analytics.dd9b7d.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/telemetry.8e2ef4.js">
+  <link rel="modulepreload" crossorigin href="./assets/runtime.0621ec.js">
+  <link rel="modulepreload" crossorigin href="./assets/kernel.fe438d.js">
+  <link rel="modulepreload" crossorigin href="./assets/bridge.952b9e.js">
+  <link rel="modulepreload" crossorigin href="./assets/socket.0fbe84.js">
+  <link rel="modulepreload" crossorigin href="./assets/worker.2b17dc.js">
+  <link rel="modulepreload" crossorigin href="./assets/engine.c952a4.js">
+  <link rel="modulepreload" crossorigin href="./assets/provider.6d5bde.js">
+  <link rel="modulepreload" crossorigin href="./assets/adapter.f670fb.js">
+  <link rel="modulepreload" crossorigin href="./assets/handler.3c4849.js">
+  <link rel="modulepreload" crossorigin href="./assets/resolver.390e4d.js">
+  <link rel="modulepreload" crossorigin href="./assets/factory.7d0a38.js">
+  <link rel="modulepreload" crossorigin href="./assets/pipeline.3a3968.js">
+  <link rel="modulepreload" crossorigin href="./assets/middleware.84956f.js">
+  <link rel="modulepreload" crossorigin href="./assets/transport.07a76b.js">
+  <link rel="modulepreload" crossorigin href="./assets/schema.ceb7ea.js">
+  <link rel="modulepreload" crossorigin href="./assets/validator.5e02f9.js">
+  <link rel="modulepreload" crossorigin href="./assets/serializer.c46c99.js">
+  <link rel="modulepreload" crossorigin href="./assets/dispatcher.dded83.js">
+  <link rel="modulepreload" crossorigin href="./assets/scheduler.746f39.js">
+  <link rel="modulepreload" crossorigin href="./assets/observer.007b14.js">
+  <link rel="modulepreload" crossorigin href="./assets/mediator.540854.js">
+  <link rel="modulepreload" crossorigin href="./assets/iterator.c37b08.js">
+  <link rel="modulepreload" crossorigin href="./assets/compiler.53199d.js">
+  <link rel="modulepreload" crossorigin href="./assets/parser.72b7e0.js">
+  <link rel="modulepreload" crossorigin href="./assets/lexer.a05202.js">
+  <link rel="modulepreload" crossorigin href="./assets/emitter.ba5b9d.js">
+  <link rel="modulepreload" crossorigin href="./assets/analytics.fda7a6.js">
+  <link rel="modulepreload" crossorigin href="./assets/telemetry.7d22c8.js">
+  <link rel="modulepreload" crossorigin href="./assets/kernel.7ae131.js">
+  <link rel="modulepreload" crossorigin href="./assets/runtime.7da33d.js">
+  <link rel="modulepreload" crossorigin href="./assets/bridge.d39a8e.js">
+  <link rel="modulepreload" crossorigin href="./assets/socket.65a9c6.js">
+  <link rel="modulepreload" crossorigin href="./assets/worker.1ecbf4.js">
+  <link rel="modulepreload" crossorigin href="./assets/engine.06aaf7.js">
+  <link rel="modulepreload" crossorigin href="./assets/provider.0a2d84.js">
+  <link rel="modulepreload" crossorigin href="./assets/adapter.b01ae1.js">
+  <link rel="modulepreload" crossorigin href="./assets/handler.f8621f.js">
+  <link rel="modulepreload" crossorigin href="./assets/resolver.d842ab.js">
+  <link rel="modulepreload" crossorigin href="./assets/factory.98dd38.js">
+  <link rel="modulepreload" crossorigin href="./assets/pipeline.560fe6.js">
+  <link rel="modulepreload" crossorigin href="./assets/middleware.66f236.js">
+  <link rel="modulepreload" crossorigin href="./assets/transport.b01f2d.js">
+  <link rel="modulepreload" crossorigin href="./assets/schema.eb63c3.js">
+  <link rel="modulepreload" crossorigin href="./assets/serializer.52de8b.js">
+  <link rel="stylesheet" crossorigin href="./assets/c18b881cd4.css">
+</head>
+<body class="overflow-hidden">
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js');
+  }
+</script>
+    <div id="root"></div>
+</body>
+</html>
