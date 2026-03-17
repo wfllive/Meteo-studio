@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="108"
+     height="108"
+     viewBox="0 0 108 108">
+    
+    <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2196F3"/>
+            <stop offset="100%" stop-color="#6200EA"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Фон -->
+    <rect width="108" height="108" rx="24" fill="url(#bg)"/>
+    
+    <!-- Дальнее свечение -->
+    <path d="M54,14L34,54h16l-10,40l28,-48h-18z"
+          fill="#FFFFFF" opacity="0.08"/>
+    
+    <!-- Среднее свечение -->
+    <path d="M54,18L36,54h15l-9,36l26,-44h-17z"
+          fill="#FFFFFF" opacity="0.15"/>
+    
+    <!-- Внешнее свечение -->
+    <path d="M54,20L38,54h14l-8,34l24,-42h-16z"
+          fill="#FFFFFF" opacity="0.25"/>
+    
+    <!-- Основная молния -->
+    <path d="M54,26L42,54h10l-6,28l18,-34h-12z"
+          fill="#FFD54F"/>
+</svg>
